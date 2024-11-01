@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MoviesApp
 {
@@ -15,6 +17,23 @@ namespace MoviesApp
         {
             InitializeComponent();
             _httpClient = new HttpClient();
+        }
+
+        private void OnSearchTextBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                OnSearchClick(sender, e); // Запуск поиска при нажатии Enter
+            }
+        }
+
+        private void OnSummaryLoaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is WebBrowser webBrowser && webBrowser.DataContext is Movie movie)
+            {
+                string htmlContent = $"<html><body>{movie.Show.Summary}</body></html>";
+                webBrowser.NavigateToString(htmlContent);
+            }
         }
 
         private async void OnSearchClick(object sender, RoutedEventArgs e)

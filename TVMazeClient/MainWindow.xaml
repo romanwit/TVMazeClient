@@ -8,8 +8,12 @@
         <materialDesign:Card>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="10" FocusManager.FocusedElement="{Binding ElementName=SearchTextBox}">
-                <TextBox x:Name="SearchTextBox" Width="200" Height="25"  KeyDown="OnSearchTextBoxKeyDown" Focusable="True"/>
-                <Button Content="Search" Width="100" Height="25" Margin="10,0,0,0" Click="OnSearchClick" Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
+                    <materialDesign:Card>
+                        <TextBox x:Name="SearchTextBox" Width="200" Height="25"  KeyDown="OnSearchTextBoxKeyDown" Focusable="True"/>
+                    </materialDesign:Card>
+                    <materialDesign:Card>
+                        <Button Content="Search" Width="100" Height="25" Margin="10,0,0,0" Click="OnSearchClick" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    </materialDesign:Card>
             </StackPanel>
 
             <DataGrid x:Name="MoviesDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">

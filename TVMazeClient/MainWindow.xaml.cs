@@ -11,7 +11,7 @@ namespace MoviesApp
 {
     public partial class MainWindow : Window
     {
-        private readonly HttpClient _httpClient;
+        public HttpClient _httpClient;
 
         public MainWindow()
         {
@@ -19,15 +19,15 @@ namespace MoviesApp
             _httpClient = new HttpClient();
         }
 
-        private void OnSearchTextBoxKeyDown(object sender, KeyEventArgs e)
+        public void OnSearchTextBoxKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                OnSearchClick(sender, e); // Запуск поиска при нажатии Enter
+                OnSearchClick(sender, e); 
             }
         }
 
-        private void OnSummaryLoaded(object sender, RoutedEventArgs e)
+        public void OnSummaryLoaded(object sender, RoutedEventArgs e)
         {
             if (sender is WebBrowser webBrowser && webBrowser.DataContext is Movie movie)
             {
@@ -36,7 +36,7 @@ namespace MoviesApp
             }
         }
 
-        private async void OnSearchClick(object sender, RoutedEventArgs e)
+        public async void OnSearchClick(object sender, RoutedEventArgs e)
         {
             string query = SearchTextBox.Text.Trim();
             if (!string.IsNullOrEmpty(query))
@@ -45,7 +45,7 @@ namespace MoviesApp
             }
         }
 
-        private async Task LoadMovies(string searchQuery)
+        public async Task LoadMovies(string searchQuery)
         {
             try
             {

@@ -47,21 +47,12 @@ public class MainWindowTests
             System.Windows.Threading.Dispatcher.Run();
         }));
 
-        // set the apartment state  
         newWindowThread.SetApartmentState(ApartmentState.STA);
-
-        // make the thread a background thread  
-        //newWindowThread.IsBackground = true;
-
-        // start the thread  
+ 
         newWindowThread.Start();
 
         Thread.Sleep(1000);
-        //_mainWindow.Dispatcher.InvokeShutdown();
-
-        //newWindowThread.Join();
-
-        //var i = 1;
+        
 
     }
 
@@ -84,12 +75,12 @@ public class MainWindowTests
             _mainWindow.OnSearchTextBoxKeyDown(mockSender, keyEventArgs);
 
             // Assert
-            var searchMethod = _mainWindow.GetType().GetMethod("OnSearchClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var searchMethod = _mainWindow.GetType().GetMethod("OnSearchClick", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
             Assert.NotNull(searchMethod);
         } );
     }
 
-    /*
+    
     [Fact]
     [STAThread]
     public async Task OnSearchClick_ShouldCallLoadMovies_WhenSearchTextIsNotEmpty()
@@ -101,14 +92,15 @@ public class MainWindowTests
             _mainWindow.SearchTextBox.Text = query;
             _mainWindow.OnSearchClick(new object(), new RoutedEventArgs());
             // Assert
-            _mockHttpClient.Verify(client => client.GetStringAsync(It.Is<string>(s => s.Contains(query))), Times.Once);
+            Assert.NotEqual(_mainWindow.MoviesDataGrid.Items.Count, 0);
+            //_mockHttpClient.Verify(client => client.GetStringAsync(It.Is<string>(s => s.Contains(query))), Times.Once);
         });
 
         //await Task.Delay(1000);
 
         
     }
-    */
+    
 
     [Fact]
     [STAThread]

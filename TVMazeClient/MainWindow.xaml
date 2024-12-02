@@ -25,9 +25,9 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Show.Name}" Width="2*" />
-                    <DataGridTextColumn Header="Language" Binding="{Binding Show.Language}" Width="1*" />
-                    <DataGridTextColumn Header="Premiered" Binding="{Binding Show.Premiered}" Width="*" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Show.Name}" Width="2*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Language" Binding="{Binding Show.Language}" Width="1*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Premiered" Binding="{Binding Show.Premiered}" Width="*" IsReadOnly="True"/>
                     <DataGridTemplateColumn Header="Summary" Width="5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
